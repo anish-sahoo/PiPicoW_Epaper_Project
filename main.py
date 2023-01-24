@@ -1,8 +1,8 @@
-#from picopaper import EPD_2in13
 from picopaper_landscape import EPD_2in13_V3_Landscape
 import machine, time
 import network
 import ntptime
+import random
 
 print("Hello world")
 
@@ -64,82 +64,119 @@ while 1==1:
         time_m = "0" + time_m
     if time_hrs<10:
         time_h = "0" + time_h
-    epd.text("Last Refresh - "+time_h+':'+time_m, 0, 10, 0x00)
+    epd.text("     Last Refresh - " + time_h + ':' + time_m, 0, 10, 0x00)
+
     
-    morning = "Good Morning!"
-    quotes_line1 = ["Anything that can go wrong will","Don't judge a book by its"]
-    quotes_line2 = ["go wrong. - Murphy's Law","cover. - Anonymus"]
+    quoteLineOne = ["The best way to get started is ",  "Nothing that's worth anything", "Everybody has talent, it's just", "You never fail until", "Nothing is impossible. The word"]
+    quoteLineTwo = ["to quit talking and begin doing.", "is easy",                       "a matter of moving around until", "you stop trying.",     "itself says 'I'm possible!'"]
+    quoteLineThr = [" ",                                " ",                             "you've discovered what it is.",   " ",                    " "]
+    quoteAuthor = [ "- Walt Disney",                    "- Barack Obama",                "- George Lucas",                  "- Albert Einstein",    "- Audrey Hepburn"]
+    #Have a great day!
+
+    #Spanish:    
+    vocabEspanol = ["la manzana", "hola", "el nombre", "la fecha", "el agua"]
+    #English:
+    vocabEnglish = ["the apple", "hello", "the name", "the date", "the water"]
+
+    #FUN FACT
+    #Did you know?
+    techFactLineOne = ["Phones are computers.", "The first computer was basically", "The largest bridge in the world", "The Ancient Egyptians created ", "The most common computer science"]
+    techFactLineTwo = [" ", "a giant calculator.", "is in China.", "canals to move limestone for ", "languages are JavaScript,"]
+    techFactLineThr = [" ", "calculator.", " ", "the Great Pyramids.", "HTML/CSS, Python, and Java."]
     
-    if (time_hrs>4 and time_hrs<24):
-        epd.text("       Have a great day!       ", 0, 100, 0x00)
-    
-    
+    #Read this great book:
+    book = ["The Very Hungry Caterpillar", "Where the Wild Things Are", "Chicka Chicka Boom Boom", "Goodnight Moon", "The Giving Tree"]
+    bookAuthor = ["By Eric Carle", "By Maurice Sendak", "By Bill Martin, Jr.", "By Margaret Wise Brown", "By Shel Silverstein"]
+
+    ##################################################################################################################################################
+    #if statements - COPY TO COMPLETE CODE
+
     if(time_hrs==7):
-        epd.text("Good Morning", 0, 20, 0x00)
+        epd.text("         GOOD MORNING!         ", 0, 60, 0x00)
     elif(time_hrs==8):
-        epd.text("quote", 0, 20, 0x00)
+        #QUOTE
+        #Generate random int
+        dispValue = random.randint(0, len(quoteLineOne)-1)
+
+        #display quote
+        epd.text(quoteLineOne[dispValue], 0, 50, 0x00)
+        epd.text(quoteLineTwo[dispValue], 0, 60, 0x00)
+        epd.text(quoteLineThr[dispValue], 0, 70, 0x00)
+        epd.text(quoteAuthor[dispValue], 20, 80, 0x00)
+        #epd.text("Have a great day!", 0, 20, 0x00)
+
+        #Remove items from array after being displayed
+        quoteLineOne.pop(dispValue)
+        quoteLineTwo.pop(dispValue)
+        quoteLineThr.pop(dispValue)
+        quoteAuthor.pop(dispValue)
     elif(time_hrs==9):
-        epd.text("breakfast", 0, 20, 0x00)
+        epd.text("      TIME FOR BREAKFAST!      ", 0, 62, 0x00)
     elif(time_hrs==11):
-        epd.text("spanish word", 0, 20, 0x00)
+        #SPANISH
+        #Generate random int
+        dispValue = random.randint(0, len(vocabEspanol)-1)
+
+        #display spanish & english
+        epd.text("Let's learn a new Spanish word!", 0, 40, 0x00)
+        epd.text("     Spanish: "+vocabEspanol[dispValue], 0, 60, 0x00)
+        epd.text("     English: "+vocabEnglish[dispValue], 0, 70, 0x00)
+
+        #Remove items from array after being displayed
+        vocabEspanol.pop(dispValue)
+        vocabEnglish.pop(dispValue)
     elif(time_hrs==12):
-        epd.text("lunch", 0, 20, 0x00)
+        epd.text("        TIME FOR LUNCH!        ", 0, 64, 0x00)
     elif(time_hrs==13):
-        epd.text("break", 0, 20, 0x00)
-    elif(time_hrs==15):
-        epd.text("it works", 0, 20, 0x00)    
+        epd.text("         TAKE A BREAK!         ", 0, 64, 0x00) 
     elif(time_hrs==16):
-        #epd.text("tech/engineering", 0, 20, 0x00)
-        epd.text(str(quotes_line1[0]), 0, 40, 0x00)
-        epd.text(str(quotes_line2[0]), 0, 60, 0x00) 
+        #TECH/ENGINEERING FACT
+        #Generate random int
+        dispValue = random.randint(0, len(techFactLineOne)-1)
+
+        #display fact
+        epd.text("    FUN FACT! Did you know?    ", 0, 30, 0x00)
+        epd.text(techFactLineOne[dispValue], 0, 50, 0x00)
+        epd.text(techFactLineTwo[dispValue], 0, 60, 0x00)
+        epd.text(techFactLineThr[dispValue], 0, 70, 0x00)
+
+        #Remove items from array after being displayed
+        techFactLineOne.pop(dispValue)
+        techFactLineTwo.pop(dispValue)
+        techFactLineThr.pop(dispValue)
     elif(time_hrs==18):
-        epd.text("dinner", 0, 20, 0x00)
+        epd.text("        TIME FOR DINNER!       ", 0, 64, 0x00)
     elif(time_hrs==20):
-        epd.text("read", 0, 20, 0x00)
+        #READ
+        #Generate random int
+        dispValue = random.randint(0, len(book)-1)
+
+        #display book
+        epd.text("Read this great book:", 0, 40, 0x00)
+        epd.text(book[dispValue], 0, 60, 0x00)
+        epd.text("- "+bookAuthor[dispValue], 0, 72, 0x00)
+
+        #Remove items from array after being displayed
+        book.pop(dispValue)
+        bookAuthor.pop(dispValue)
     elif(time_hrs==21):
-        epd.text("sleep", 0, 20, 0x00)
+        epd.text("         TIME FOR BED!         ", 0, 30, 0x00)
+        epd.text("Let the stars light the way to", 0, 50, 0x00)
+        epd.text("where your dreams can be found", 0, 60, 0x00)
+        epd.text("awaiting your arrival.", 0, 70, 0x00)
+        epd.text("   - Anthony T. Hincks", 0, 84, 0x00)
+    
+        
+    if (time_hrs>4 and time_hrs<17):
+        epd.text("       Have a great day!       ", 0, 120, 0x00)
+    elif(time_hrs>17 and time_hrs<21):
+        epd.text("         Good Evening!         ", 0, 120, 0x00)
+    else:
+        epd.text("          Good Night!          ", 0, 120, 0x00)
     
     epd.display(epd.buffer)
     led.on()
     
-
-    total_seconds = 60*time_mins + seconds
+    total_seconds = 60*time_mins + time_secs
     print('waiting '+str((3600-total_seconds))+' seconds')
-    epd.delay_ms((60-minutes)*60000)
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    '''time_m = str(time_mins)
-    time_h = str(time_hrs)
-    
-    if time_mins<10:
-        time_m = "0" + time_m
-    if time_hrs<10:
-        time_h = "0" + time_h
-    
-    final_formatted_time = time_h + ":" + time_m
-    print(final_formatted_time)
-    epd.text(final_formatted_time, 0, 20, 0x00)
-    epd.text("Text should refresh", 0, 100, 0x00)
-    epd.text("In 3 mins", 0, 120, 0x00)
-    epd.text("refresh count:", 0, 160, 0x00)
-    epd.text(str(a), 0, 180, 0x00)
-    epd.display(epd.buffer)'''
-    
-    
-    
+    epd.delay_ms((60-time_mins)*60000)
