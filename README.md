@@ -1,5 +1,5 @@
 # PiPicoW_Epaper_Project
-Codebase for Challenge 2 of the UNO IT Innovation Cup
+Codebase for Challenge 2 of the UNO IT Innovation Cup for **Millard North Team 1**
 
 ## Hardware & Software Used
 - Raspberry Pi Pico W & Waveshare Pico ePaper 2.13 
