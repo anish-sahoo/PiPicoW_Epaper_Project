@@ -1,8 +1,9 @@
 # PiPicoW_Epaper_Project
 Codebase for Challenge 2 of the UNO IT Innovation Cup
 
-## Hardware 
-Raspberry Pi Pico W & Waveshare Pico ePaper 2.13
+## Hardware & Software Used
+- Raspberry Pi Pico W & Waveshare Pico ePaper 2.13 
+- Thonny IDE
 
 ## Problem Statement
 These days, children are starting to turn to social media for entertainment, leading to a day-to-day loss in motivation and curiosity. With our Raspberry Pi Pico W, E-ink display and our knowledge of Python, we developed an innovative solution.
